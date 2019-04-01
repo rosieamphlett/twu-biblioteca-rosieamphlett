@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="biblioteca" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.twu.biblioteca.BibliotecaApp" />
+    <module name="biblioteca" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
