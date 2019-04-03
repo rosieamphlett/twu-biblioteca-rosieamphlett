@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Menu {
     private BookCollection books = new BookCollection();
+    private MovieCollection movies = new MovieCollection();
     private String menuOption;
     private int userInput;
     private Scanner reader = new Scanner(System.in);
@@ -10,22 +11,26 @@ public class Menu {
     public void showMenu () {
         System.out.println("MENU: \n");
         System.out.println("Enter [1] to display all available books");
-        System.out.println("Enter [2] to checkout a book");
-        System.out.println("Enter [3] to return a book");
-        System.out.println("Enter [4] to quit");
+        System.out.println("Enter [2] to display all available movies");
+        System.out.println("Enter [3] to checkout a book");
+        System.out.println("Enter [4] to return a book");
+        System.out.println("Enter [5] to quit");
         this.userInput = Integer.parseInt(reader.nextLine());
 
         switch (userInput) {
             case 1: this.showAllBooks();
                     this.showMenu();
                     break;
-            case 2: this.useCheckout();
+            case 2: this.showAllMovies();
                     this.showMenu();
                     break;
-            case 3: this.useReturn();
+            case 3: this.useCheckout();
                     this.showMenu();
                     break;
-            case 4: this.quit();
+            case 4: this.useReturn();
+                    this.showMenu();
+                    break;
+            case 5: this.quit();
                     break;
             default: this.invalidOption();
                     this.showMenu();
@@ -37,6 +42,16 @@ public class Menu {
         String r = "";
         for(Book book : books.getBooks()) {
             this.menuOption = book.getTitle();
+            System.out.println(r += menuOption+"\r");
+        }
+        System.out.println("\r");
+        return r.trim();
+    }
+
+    public String showAllMovies() {
+        String r = "";
+        for(Movie movie : movies.getAvailableMovies()) {
+            this.menuOption = movie.getName();
             System.out.println(r += menuOption+"\r");
         }
         System.out.println("\r");
