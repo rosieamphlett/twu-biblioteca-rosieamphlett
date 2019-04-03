@@ -48,7 +48,7 @@ public class MovieTests {
         Assert.assertEquals(expected, actual, 0);
     }
 
-    @Test public void testBookInfoFormatted() {
+    @Test public void testMovieInfoFormatted() {
         String expected = String.format("%-15s %-15s %-15s %-15s", "Hidden Figures", 2016, "Theodore Melfi", 7.8);
         String actual = testMovies.getAvailableMovies().get(0).getMovieInfo();
         assertEquals(expected, actual);
