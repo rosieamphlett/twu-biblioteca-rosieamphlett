@@ -3,24 +3,66 @@ import java.util.Scanner;
 
 public class Menu {
     private BookCollection books = new BookCollection();
-    private String menuResult;
+    private String menuOption;
+    private int userInput;
+    private Scanner reader = new Scanner(System.in);
 
-    public String showMenu () {
-        Scanner reader = new Scanner(System.in);
+    public void showMenu () {
         System.out.println("MENU: \n");
         System.out.println("Enter [1] to display all available books");
-        int response = Integer.parseInt(reader.nextLine());
+        System.out.println("Enter [2] to checkout a book");
+        System.out.println("Enter [3] to return a book");
+        System.out.println("Enter [4] to quit");
+        this.userInput = Integer.parseInt(reader.nextLine());
 
-        if(response == 1) {
-            for(Book book : books.getBooks()) {
-                System.out.println(book.getTitle());
-                this.menuResult = book.getTitle();
-            }
-        } else {
-            System.out.println("Invalid entry!");
-            this.menuResult = "Invalid Entry!";
-            this.showMenu();
+        switch (userInput) {
+            case 1: this.showAllBooks();
+                    this.showMenu();
+                    break;
+            case 2: this.useCheckout();
+                    this.showMenu();
+                    break;
+            case 3: this.useReturn();
+                    this.showMenu();
+                    break;
+            case 4: this.quit();
+                    break;
+            default: this.invalidOption();
+                    this.showMenu();
+                    break;
         }
-        return menuResult;
+    }
+
+    public String showAllBooks() {
+        String r = "";
+        for(Book book : books.getBooks()) {
+            this.menuOption = book.getTitle();
+            System.out.println(r += menuOption+"\r");
+        }
+        System.out.println("\r");
+        return r.trim();
+    }
+
+    public String useCheckout() {
+        System.out.println("Which book would you like to checkout?");
+        String bookToCheckout = reader.nextLine();
+        return books.checkout(bookToCheckout);
+    }
+
+    public String useReturn() {
+        System.out.println("Which book would you like to return?");
+        String bookToReturn = reader.nextLine();
+        return books.returnBook(bookToReturn);
+    }
+
+    public String quit() {
+        this.menuOption = "Goodbye!";
+        return this.menuOption;
+    }
+
+    public String invalidOption() {
+        this.menuOption = "Please select a valid option!";
+        System.out.println(this.menuOption);
+        return this.menuOption;
     }
 }
