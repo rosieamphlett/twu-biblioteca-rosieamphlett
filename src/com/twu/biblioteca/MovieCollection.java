@@ -53,5 +53,4 @@ public class MovieCollection {
         System.out.println("\n"+resMessage);
         return resMessage;
     }
-
 }
