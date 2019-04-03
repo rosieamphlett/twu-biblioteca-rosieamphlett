@@ -13,8 +13,10 @@ public class Menu {
         System.out.println("Enter [1] to display all available books");
         System.out.println("Enter [2] to display all available movies");
         System.out.println("Enter [3] to checkout a book");
-        System.out.println("Enter [4] to return a book");
-        System.out.println("Enter [5] to quit");
+        System.out.println("Enter [4] to checkout a movie");
+        System.out.println("Enter [5] to return a book");
+        System.out.println("Enter [6] to return a movie");
+        System.out.println("Enter [7] to quit");
         this.userInput = Integer.parseInt(reader.nextLine());
 
         switch (userInput) {
@@ -27,10 +29,16 @@ public class Menu {
             case 3: this.useCheckout();
                     this.showMenu();
                     break;
-            case 4: this.useReturn();
+            case 4: this.checkoutMovie();
                     this.showMenu();
                     break;
-            case 5: this.quit();
+            case 5: this.useReturn();
+                    this.showMenu();
+                    break;
+            case 6: this.returnMovie();
+                    this.showMenu();
+                    break;
+            case 7: this.quit();
                     break;
             default: this.invalidOption();
                     this.showMenu();
@@ -64,10 +72,22 @@ public class Menu {
         return books.checkout(bookToCheckout);
     }
 
+    public String checkoutMovie() {
+        System.out.println("Which movie would you like to checkout?");
+        String movieToCheckout = reader.nextLine();
+        return movies.checkoutMovie(movieToCheckout);
+    }
+
     public String useReturn() {
         System.out.println("Which book would you like to return?");
         String bookToReturn = reader.nextLine();
         return books.returnBook(bookToReturn);
+    }
+
+    public String returnMovie() {
+        System.out.println("Which book would you like to return?");
+        String movieToReturn = reader.nextLine();
+        return movies.returnMovie(movieToReturn);
     }
 
     public String quit() {

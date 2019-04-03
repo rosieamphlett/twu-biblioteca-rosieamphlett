@@ -54,4 +54,30 @@ public class MovieTests {
         assertEquals(expected, actual);
     }
 
+    @Test public void testMovieCheckoutSuccess() {
+        String actual = testMovies.checkoutMovie("legally blonde");
+        String expected = "Thank you! Enjoy the movie";
+        assertEquals(expected, actual);
+    }
+
+    @Test public void testMovieCheckoutFailed() {
+        String actual = testMovies.checkoutMovie("LOTR");
+        String expected = "Sorry, that movie is not available";
+        assertEquals(expected, actual);
+    }
+
+    @Test public void testMovieReturnSuccess() {
+        testMovies.checkoutMovie("captain marvel");
+        String actual = testMovies.returnMovie("Captain Marvel");
+        String expected = "Thank you for returning the movie";
+        assertEquals(expected, actual);
+    }
+
+    @Test public void testMovieReturnFailed() {
+        testMovies.checkoutMovie("captain marvel");
+        String actual = testMovies.returnMovie("LOTR");
+        String expected = "That is not a valid movie to return";
+        assertEquals(expected, actual);
+    }
+
 }

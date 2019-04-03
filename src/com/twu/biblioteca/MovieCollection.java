@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class MovieCollection {
     private ArrayList<Movie> availableMovies = new ArrayList<Movie>();
+    private ArrayList<Movie> checkedOutMovies = new ArrayList<Movie>();
+    private String resMessage;
 
     public MovieCollection() {
         Movie movie1 = new Movie("Hidden Figures", 2016, "Theodore Melfi", 7.8);
@@ -19,6 +21,37 @@ public class MovieCollection {
 
     public ArrayList<Movie> getAvailableMovies() {
         return this.availableMovies;
+    }
+
+    public String checkoutMovie(String movieToCheckout) {
+        if (availableMovies.size() < 1) resMessage = "Sorry, that movie is not available";
+        for (Movie movie : availableMovies) {
+            if (movie.getName().equalsIgnoreCase(movieToCheckout)) {
+                resMessage = "Thank you! Enjoy the movie";
+                checkedOutMovies.add(movie);
+                availableMovies.remove(movie);
+                break;
+            } else {
+                resMessage = "Sorry, that movie is not available";
+            }
+        }
+        System.out.println("\n"+resMessage);
+        return resMessage;
+    }
+
+    public String returnMovie(String movieToReturn) {
+        if (checkedOutMovies.size() < 1) resMessage = "That is not a valid movie to return";
+        for (Movie movie : checkedOutMovies) {
+            if(movie.getName().equalsIgnoreCase(movieToReturn)) {
+                resMessage = "Thank you for returning the movie";
+                checkedOutMovies.remove(movie);
+                availableMovies.add(movie);
+                break;
+            }
+            resMessage = "That is not a valid movie to return";
+        }
+        System.out.println("\n"+resMessage);
+        return resMessage;
     }
 
 }
