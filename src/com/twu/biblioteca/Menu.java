@@ -4,7 +4,8 @@ import java.util.Scanner;
 public class Menu {
     private BookCollection books = new BookCollection();
     private MovieCollection movies = new MovieCollection();
-    private Checkout checkout = new Checkout();
+    private CheckoutReturn checkoutreturn = new CheckoutReturn();
+    private ShowAll getAll = new ShowAll();
     private String menuOption;
     private int userInput;
     private Scanner reader = new Scanner(System.in);
@@ -21,22 +22,22 @@ public class Menu {
         this.userInput = Integer.parseInt(reader.nextLine());
 
         switch (userInput) {
-            case 1: this.showAllBooks();
+            case 1: getAll.showAllBooks(books);
                     this.showMenu();
                     break;
-            case 2: this.showAllMovies();
+            case 2: getAll.showAllMovies(movies);
                     this.showMenu();
                     break;
-            case 3: checkout.checkoutBook(books);
+            case 3: checkoutreturn.checkoutBook(books);
                     this.showMenu();
                     break;
-            case 4: checkout.checkoutMovie();
+            case 4: checkoutreturn.checkoutMovie(movies);
                     this.showMenu();
                     break;
-            case 5: this.useReturn();
+            case 5: checkoutreturn.returnBook(books);
                     this.showMenu();
                     break;
-            case 6: this.returnMovie();
+            case 6: checkoutreturn.returnMovie(movies);
                     this.showMenu();
                     break;
             case 7: this.quit();
@@ -47,49 +48,6 @@ public class Menu {
         }
     }
 
-    public String showAllBooks() {
-        String r = "";
-        for(Book book : books.getBooks()) {
-            this.menuOption = book.getTitle();
-            System.out.println(r += menuOption+"\r");
-        }
-        System.out.println("\r");
-        return r.trim();
-    }
-
-    public String showAllMovies() {
-        String r = "";
-        for(Movie movie : movies.getAvailableMovies()) {
-            this.menuOption = movie.getTitle();
-            System.out.println(r += menuOption+"\r");
-        }
-        System.out.println("\r");
-        return r.trim();
-    }
-
-//    public String useCheckout() {
-//        System.out.println("Which book would you like to checkout?");
-//        String bookToCheckout = reader.nextLine();
-//        return books.checkout(bookToCheckout);
-//    }
-//
-//    public String checkoutMovie() {
-//        System.out.println("Which movie would you like to checkout?");
-//        String movieToCheckout = reader.nextLine();
-//        return movies.checkoutMovie(movieToCheckout);
-//    }
-
-    public String useReturn() {
-        System.out.println("Which book would you like to return?");
-        String bookToReturn = reader.nextLine();
-        return books.returnBook(bookToReturn);
-    }
-
-    public String returnMovie() {
-        System.out.println("Which book would you like to return?");
-        String movieToReturn = reader.nextLine();
-        return movies.returnMovie(movieToReturn);
-    }
 
     public String quit() {
         this.menuOption = "Goodbye!";

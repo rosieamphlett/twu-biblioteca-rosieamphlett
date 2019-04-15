@@ -1,9 +1,5 @@
 package com.twu.biblioteca;
 
-import javax.xml.bind.SchemaOutputResolver;
-import java.util.ArrayList;
-import java.util.List;
-
 public class BibliotecaApp {
 
     public static void main(String[] args) {
