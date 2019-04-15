@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Menu {
     private BookCollection books = new BookCollection();
     private MovieCollection movies = new MovieCollection();
+    private Checkout checkout = new Checkout();
     private String menuOption;
     private int userInput;
     private Scanner reader = new Scanner(System.in);
@@ -26,10 +27,10 @@ public class Menu {
             case 2: this.showAllMovies();
                     this.showMenu();
                     break;
-            case 3: this.useCheckout();
+            case 3: checkout.checkoutBook(books);
                     this.showMenu();
                     break;
-            case 4: this.checkoutMovie();
+            case 4: checkout.checkoutMovie();
                     this.showMenu();
                     break;
             case 5: this.useReturn();
@@ -59,24 +60,24 @@ public class Menu {
     public String showAllMovies() {
         String r = "";
         for(Movie movie : movies.getAvailableMovies()) {
-            this.menuOption = movie.getName();
+            this.menuOption = movie.getTitle();
             System.out.println(r += menuOption+"\r");
         }
         System.out.println("\r");
         return r.trim();
     }
 
-    public String useCheckout() {
-        System.out.println("Which book would you like to checkout?");
-        String bookToCheckout = reader.nextLine();
-        return books.checkout(bookToCheckout);
-    }
-
-    public String checkoutMovie() {
-        System.out.println("Which movie would you like to checkout?");
-        String movieToCheckout = reader.nextLine();
-        return movies.checkoutMovie(movieToCheckout);
-    }
+//    public String useCheckout() {
+//        System.out.println("Which book would you like to checkout?");
+//        String bookToCheckout = reader.nextLine();
+//        return books.checkout(bookToCheckout);
+//    }
+//
+//    public String checkoutMovie() {
+//        System.out.println("Which movie would you like to checkout?");
+//        String movieToCheckout = reader.nextLine();
+//        return movies.checkoutMovie(movieToCheckout);
+//    }
 
     public String useReturn() {
         System.out.println("Which book would you like to return?");

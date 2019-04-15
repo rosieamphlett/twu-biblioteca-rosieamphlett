@@ -26,7 +26,7 @@ public class MovieCollection {
     public String checkoutMovie(String movieToCheckout) {
         if (availableMovies.size() < 1) resMessage = "Sorry, that movie is not available";
         for (Movie movie : availableMovies) {
-            if (movie.getName().equalsIgnoreCase(movieToCheckout)) {
+            if (movie.getTitle().equalsIgnoreCase(movieToCheckout)) {
                 resMessage = "Thank you! Enjoy the movie";
                 checkedOutMovies.add(movie);
                 availableMovies.remove(movie);
@@ -42,7 +42,7 @@ public class MovieCollection {
     public String returnMovie(String movieToReturn) {
         if (checkedOutMovies.size() < 1) resMessage = "That is not a valid movie to return";
         for (Movie movie : checkedOutMovies) {
-            if(movie.getName().equalsIgnoreCase(movieToReturn)) {
+            if(movie.getTitle().equalsIgnoreCase(movieToReturn)) {
                 resMessage = "Thank you for returning the movie";
                 checkedOutMovies.remove(movie);
                 availableMovies.add(movie);

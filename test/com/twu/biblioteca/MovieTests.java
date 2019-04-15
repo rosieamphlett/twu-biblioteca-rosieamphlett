@@ -10,11 +10,11 @@ public class MovieTests {
 
     @Test public void testMovieTitles() {
         String expected= "Hidden Figures";
-        String actual = testMovies.getAvailableMovies().get(0).getName();
+        String actual = testMovies.getAvailableMovies().get(0).getTitle();
         assertEquals(expected, actual);
 
         String expected2 = "Legally Blonde";
-        String actual2 = testMovies.getAvailableMovies().get(1).getName();
+        String actual2 = testMovies.getAvailableMovies().get(1).getTitle();
         assertEquals(expected2, actual2);
     }
 
